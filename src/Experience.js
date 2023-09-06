@@ -1,50 +1,51 @@
-/**
- * Hooks Reactjs: https://legacy.reactjs.org/docs/hooks-intro.html
- * React Three Fiber: https://docs.pmnd.rs/react-three-fiber/getting-started/introduction
- * Hooks de R3F: https://docs.pmnd.rs/react-three-fiber/api/hooks
- * React three drei: https://github.com/pmndrs/drei
- * Three.js: https://threejs.org/docs/
- *
- */
-
 import {
 	Center,
+	Cone,
 	OrbitControls,
 	PointerLockControls,
 	PresentationControls,
+	Sphere,
+	Torus,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { MeshDepthMaterial } from "three";
 
 export function Experience() {
 	const boxRef = useRef();
-
-	// const {camera, gl} = useThree()
-
-	// useFrame((state, delta) => {
-	// 	boxRef.current.rotation.x += 1 * delta;
-	// });
+	const sphereRef = useRef();
+	const coneRef = useRef();
+	const torusRef = useRef();
+	const [counter, setCounter] = useState(0);
 	useFrame((state, delta) => {
 		boxRef.current.rotation.x += 1 * delta;
-		boxRef.current.rotation.y += 2 * delta;
+		//que el cono suba y baje un poco en el eje y
+		setCounter(counter + 1 * delta);
+		sphereRef.current.position.y = Math.sin(counter);
+		coneRef.current.position.y = Math.cos(counter);
+		torusRef.current.position.y = Math.sin(counter);
 	});
 
 	return (
 		<>
 			<OrbitControls enableRotate={true} />
-			<ambientLight />
+			<ambientLight intensity={0.5} />
+			<pointLight position={[10, 10, 10]} />
 
-			<directionalLight position={[10, 3, 3]} intensity={1.5} />
-			<Center>
-				<mesh ref={boxRef}>
-					<boxGeometry args={[1, 1, 1]} />
-					<meshStandardMaterial color="purple" />
-				</mesh>
-				{/* <mesh position-z={-3}>
-					<sphereGeometry args={[1, 32, 64]} />
-					<meshStandardMaterial color={"mediumpurple"} />
-				</mesh> */}
-			</Center>
+			<Sphere position={[-5, -1, 0]} args={[1, 32, 32]} ref={sphereRef}>
+				<meshLambertMaterial color="#53ba83" />
+			</Sphere>
+			<Cone position={[-2, 0, 0]} args={[1, 2, 32]} ref={coneRef}>
+				<meshPhysicalMaterial color="#059b9a" />
+			</Cone>
+			<Torus position={[1, 0, 0]} args={[0.8, 0.4, 22, 90]} ref={torusRef}>
+				<meshToonMaterial color="#095169" />
+			</Torus>
+
+			<mesh position={[4, 0, 0]} ref={boxRef}>
+				<boxGeometry args={[1, 1, 1]} />
+				<meshStandardMaterial color="#3a9997" />
+			</mesh>
 		</>
 	);
 }
