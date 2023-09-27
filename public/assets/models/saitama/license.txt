@@ -1,0 +1,11 @@
+Model Information:
+* title:	One Punch Man - Saitama
+* source:	https://sketchfab.com/3d-models/one-punch-man-saitama-a8fd7184373c4f3cb85cf5608662fcee
+* author:	xiamilisite (https://sketchfab.com/xiamilisite)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "One Punch Man - Saitama" (https://sketchfab.com/3d-models/one-punch-man-saitama-a8fd7184373c4f3cb85cf5608662fcee) by xiamilisite (https://sketchfab.com/xiamilisite) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

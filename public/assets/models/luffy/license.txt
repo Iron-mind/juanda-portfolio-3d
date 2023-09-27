@@ -1,0 +1,11 @@
+Model Information:
+* title:	Monkey D. Luffy
+* source:	https://sketchfab.com/3d-models/monkey-d-luffy-3d9fb8bd86854aa69ee6f69fcbeaca51
+* author:	nitwit.friends (https://sketchfab.com/nitwit.friends)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Monkey D. Luffy" (https://sketchfab.com/3d-models/monkey-d-luffy-3d9fb8bd86854aa69ee6f69fcbeaca51) by nitwit.friends (https://sketchfab.com/nitwit.friends) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
