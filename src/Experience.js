@@ -14,6 +14,8 @@ import Laptop from "./world/Laptop";
 import { Table } from "./world/Table";
 import { Goku } from "./world/goku";
 import { Saitama } from "./world/Saitama";
+import WoodenFence from "./world/woondenFence";
+import Luffy from "./world/Luffy";
 
 export function Experience() {
 	const boxRef = useRef();
@@ -47,11 +49,17 @@ export function Experience() {
 			</Torus> */}
 			<Goku position={[-2, 6.8, 2]} scale={0.5} />
 			<Saitama position={[2, 6.8, 2]} scale={0.001} />
-			<Laptop position={[0, 7, 2]} scale={0.7} />
+			<Luffy position={[-4.3, 6.8, 2]} scale={0.45} rotation-y={-Math.PI / 2} />
+			<Laptop position={[0, 7, 2]} scale={0.5} />
 			<Table position={[0, 0, 0]} scale={0.1} rotation-y={Math.PI} />
 			<mesh position={[4, 8, 0]} ref={boxRef}>
 				<boxGeometry args={[1, 1, 1]} />
 				<meshStandardMaterial color="#3a9997" />
+			</mesh>
+			<WoodenFence position={[-5, 6.8, 2]} scale={1} rotation-y={Math.PI / 2} />
+			<mesh position={[0, 0, 13]} rotation-x={-Math.PI / 2}>
+				<planeGeometry attach={"geometry"} args={[35, 35]} />
+				<meshStandardMaterial attach={"material"} color="#3a9997" />
 			</mesh>
 		</>
 	);
