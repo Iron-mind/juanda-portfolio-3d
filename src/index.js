@@ -15,7 +15,7 @@ const cameraSettings = {
 root.render(
 	<div id="app-container">
 		<div id="canvas-container">
-			<Canvas camera={cameraSettings}>
+			<Canvas camera={cameraSettings} shadows>
 				<Experience />
 			</Canvas>
 		</div>

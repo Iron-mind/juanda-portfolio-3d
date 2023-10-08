@@ -16,7 +16,7 @@ export function Saitama(props) {
 	}, []);
 	return (
 		<mesh {...props} dispose={null} ref={saitamaRef}>
-			<primitive object={scene} />
+			<primitive object={scene} castShadow />
 		</mesh>
 	);
 }

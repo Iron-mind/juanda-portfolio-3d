@@ -16,6 +16,8 @@ import { Goku } from "./world/goku";
 import { Saitama } from "./world/Saitama";
 import WoodenFence from "./world/woondenFence";
 import Luffy from "./world/Luffy";
+import Lights from "./world/Lights";
+import Environments from "./world/Enviroment";
 
 export function Experience() {
 	const boxRef = useRef();
@@ -34,9 +36,11 @@ export function Experience() {
 
 	return (
 		<>
+			<Environments />
 			<OrbitControls enableRotate={true} target={[0, 7, 0]} />
-			<ambientLight intensity={0.5} />
-			<pointLight position={[10, 10, 10]} />
+			{/* <ambientLight intensity={0.5} />
+			<pointLight position={[10, 0, 10]} /> */}
+			<Lights />
 
 			<Sphere position={[-5, 7, 0]} args={[1, 32, 32]} ref={sphereRef}>
 				<meshLambertMaterial color="#53ba83" />
@@ -48,19 +52,24 @@ export function Experience() {
 				<meshToonMaterial color="#095169" />
 			</Torus> */}
 			<Goku position={[-2, 6.8, 2]} scale={0.5} />
-			<Saitama position={[2, 6.8, 2]} scale={0.001} />
+			<Saitama position={[2, 6.8, 2]} scale={0.001} castShadow />
 			<Luffy position={[-4.3, 6.8, 2]} scale={0.45} rotation-y={-Math.PI / 2} />
 			<Laptop position={[0, 7, 2]} scale={0.5} />
 			<Table position={[0, 0, 0]} scale={0.1} rotation-y={Math.PI} />
-			<mesh position={[4, 8, 0]} ref={boxRef}>
+			<mesh position={[4, 8, 0]} ref={boxRef} castShadow>
 				<boxGeometry args={[1, 1, 1]} />
 				<meshStandardMaterial color="#3a9997" />
 			</mesh>
 			<WoodenFence position={[-5, 6.8, 2]} scale={1} rotation-y={Math.PI / 2} />
-			<mesh position={[0, 0, 13]} rotation-x={-Math.PI / 2}>
+			{/* piso */}
+			<mesh position={[0, 0, 13]} rotation-x={-Math.PI / 2} receiveShadow>
 				<planeGeometry attach={"geometry"} args={[35, 35]} />
-				<meshStandardMaterial attach={"material"} color="#3a9997" />
+				<meshStandardMaterial attach={"material"} color="#F3F6F4" />
 			</mesh>
+			{/* <mesh position={[0, 0, -4.5]} rotation-x={2 * Math.PI}>
+				<planeGeometry attach={"geometry"} args={[35, 35]} />
+				<meshStandardMaterial attach={"material"} color="#CFE2F3" />
+			</mesh> */}
 		</>
 	);
 }
