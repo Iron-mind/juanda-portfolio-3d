@@ -3,6 +3,7 @@ import ReactDom from "react-dom/client";
 import { Experience } from "./Experience";
 import { Canvas } from "@react-three/fiber";
 import Info from "./components/info";
+import { Loader } from "@react-three/drei";
 
 const root = ReactDom.createRoot(document.querySelector("#root"));
 const Biography = `3D Web Developer - React-tree-fiber
@@ -18,6 +19,7 @@ root.render(
 			<Canvas camera={cameraSettings} shadows>
 				<Experience />
 			</Canvas>
+			<Loader />
 		</div>
 		<Info name={"Juan David Tovar"} biography={Biography} />
 	</div>
