@@ -19,6 +19,7 @@ export function Sign(props) {
 					receiveShadow
 					geometry={nodes.AboutMe.geometry}
 					material={materials.green}
+					onClick={() => props.onClickAboutMe()}
 				/>
 				<mesh
 					castShadow

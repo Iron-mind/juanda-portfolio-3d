@@ -9,7 +9,7 @@ const root = ReactDom.createRoot(document.querySelector("#root"));
 const Biography = `3D Web Developer - React-tree-fiber
 GitHub: iron-mind`;
 const cameraSettings = {
-	position: [0, 9.5, 8],
+	position: [4.5, 10, 5],
 	fov: 60,
 };
 // ...

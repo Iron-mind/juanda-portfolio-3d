@@ -22,12 +22,15 @@ import { Perf } from "r3f-perf";
 import { Sign } from "./world/sign";
 import Welcome from "./world/Welcome";
 import { Text } from "@react-three/drei";
+import AboutMe3D from "./world/AboutMe3D";
 
 export function Experience() {
 	const boxRef = useRef();
 	const sphereRef = useRef();
 	const coneRef = useRef();
 	const torusRef = useRef();
+	const [AboutMe3DActive, setAboutMe3DActive] = useState(false);
+
 	const [counter, setCounter] = useState(0);
 	useFrame((state, delta) => {
 		boxRef.current && (boxRef.current.rotation.x += 1 * delta);
@@ -42,7 +45,7 @@ export function Experience() {
 		<>
 			{/* <Perf /> */}
 			<Environments />
-			<OrbitControls enableRotate={true} target={[0, 7, 0]} />
+			<OrbitControls enableRotate={true} target={[4, 7, -2]} />
 			{/* <ambientLight intensity={0.5} />
 			<pointLight position={[10, 0, 10]} /> */}
 			<Lights />
@@ -79,8 +82,14 @@ export function Experience() {
 					<planeGeometry attach={"geometry"} args={[35, 35]} />
 					<meshStandardMaterial attach={"material"} color="#F3F6F4" />
 				</mesh>
-				<Sign position={[4, 6.8, 2]}>
+				<Sign
+					position={[4, 6.8, 2]}
+					onClickAboutMe={() => {
+						setAboutMe3DActive(true);
+					}}
+				>
 					<Welcome position={[0, 3, 0]} fontSize={0.2} height={0.1} />
+					<AboutMe3D active={AboutMe3DActive} />
 				</Sign>
 				<Text
 					color="white"
