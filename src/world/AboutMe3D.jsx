@@ -7,7 +7,7 @@ function AboutMe3D(props) {
 	const [active, setActive] = useState(false);
 
 	const { position } = useSpring({
-		position: props.active ? [0, 2, 1] : [0, -30, 0],
+		position: props.active ? [0, 2, 4] : [0, -30, 0],
 		from: { position: props.active ? [0, -30, 0] : [0, 2, 1] },
 		config: { mass: 10, tension: 1000, friction: 300, precision: 0.0001 },
 	});
@@ -18,12 +18,22 @@ function AboutMe3D(props) {
 				ref={textRef}
 				fontSize={5}
 				position={[0, 0, 0]}
-				color={"white"}
+				color={"green"}
 				strokeColor={"black"}
 				strokeWidth={0.01}
+				position-z={0.1}
 			>
 				{aboutMeText}
 			</Text>
+			<mesh>
+				<planeBufferGeometry attach="geometry" args={[110, 45]} />
+				<meshBasicMaterial
+					attach="material"
+					color="black"
+					transparent
+					opacity={0.7}
+				/>
+			</mesh>
 		</animated.group>
 	);
 }

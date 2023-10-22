@@ -8,7 +8,8 @@ import { Loader } from "@react-three/drei";
 const root = ReactDom.createRoot(document.querySelector("#root"));
 const Biography = `3D Web Developer - React-tree-fiber
 GitHub: iron-mind`;
-const cameraSettings = {
+
+export const cameraSettings = {
 	position: [4.5, 10, 5],
 	fov: 60,
 };

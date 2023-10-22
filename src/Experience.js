@@ -32,6 +32,7 @@ export function Experience() {
 	const [AboutMe3DActive, setAboutMe3DActive] = useState(false);
 
 	const [counter, setCounter] = useState(0);
+
 	useFrame((state, delta) => {
 		boxRef.current && (boxRef.current.rotation.x += 1 * delta);
 		//que el cono suba y baje un poco en el eje y
@@ -89,7 +90,7 @@ export function Experience() {
 					}}
 				>
 					<Welcome position={[0, 3, 0]} fontSize={0.2} height={0.1} />
-					<AboutMe3D active={AboutMe3DActive} />
+					<AboutMe3D active={AboutMe3DActive} position={[0, 0, 6]} />
 				</Sign>
 				<Text
 					color="white"

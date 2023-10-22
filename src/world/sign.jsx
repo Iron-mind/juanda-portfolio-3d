@@ -1,7 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { MathUtils } from "three";
+import { cameraSettings } from "..";
 
 export function Sign(props) {
+	const [active, setActive] = useState(false);
+
+	useFrame((state) => {
+		state.camera.position.z = MathUtils.lerp(
+			state.camera.position.z,
+			active ? cameraSettings.position[2] + 3 : cameraSettings.position[2],
+			0.02
+		);
+	});
+
 	const { nodes, materials } = useGLTF("assets/models/sign/sign.glb");
 	return (
 		<group {...props} dispose={null}>
@@ -19,7 +32,10 @@ export function Sign(props) {
 					receiveShadow
 					geometry={nodes.AboutMe.geometry}
 					material={materials.green}
-					onClick={() => props.onClickAboutMe()}
+					onClick={() => {
+						props.onClickAboutMe();
+						setActive(!active);
+					}}
 				/>
 				<mesh
 					castShadow
