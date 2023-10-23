@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { RigidBody } from "@react-three/rapier";
 
 export function Table(props) {
 	const { nodes, materials } = useGLTF(
@@ -8,13 +9,15 @@ export function Table(props) {
 	return (
 		<group {...props} dispose={null}>
 			<group rotation={[-Math.PI / 2, 0, 0]}>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Object_3.geometry}
-					material={materials.material_0}
-					position={[-71.505, -37.717, -0.001]}
-				/>
+				<RigidBody type="fixed">
+					<mesh
+						castShadow
+						receiveShadow
+						geometry={nodes.Object_3.geometry}
+						material={materials.material_0}
+						position={[-71.505, -37.717, -0.001]}
+					/>
+				</RigidBody>
 			</group>
 		</group>
 	);

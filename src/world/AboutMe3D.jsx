@@ -4,7 +4,6 @@ import { Html, Text } from "@react-three/drei";
 
 function AboutMe3D(props) {
 	const textRef = useRef();
-	const [active, setActive] = useState(false);
 
 	const { position } = useSpring({
 		position: props.active ? [0, 2, 4] : [0, -30, 0],

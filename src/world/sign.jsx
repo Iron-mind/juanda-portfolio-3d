@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { MathUtils } from "three";
-import { cameraSettings } from "..";
+
 
 export function Sign(props) {
 	const [active, setActive] = useState(false);
@@ -10,7 +10,9 @@ export function Sign(props) {
 	useFrame((state) => {
 		state.camera.position.z = MathUtils.lerp(
 			state.camera.position.z,
-			active ? cameraSettings.position[2] + 3 : cameraSettings.position[2],
+			active
+				? props.cameraSettings.position[2] + 3
+				: props.cameraSettings.position[2],
 			0.02
 		);
 	});
@@ -66,6 +68,10 @@ export function Sign(props) {
 					receiveShadow
 					geometry={nodes.Projects.geometry}
 					material={materials.yellow}
+					onClick={() => {
+						props.onClickProjects();
+						setActive(!active);
+					}}
 				/>
 				<mesh
 					castShadow
@@ -81,6 +87,13 @@ export function Sign(props) {
 					receiveShadow
 					geometry={nodes.Skills.geometry}
 					material={materials.blue}
+					onClick={() => {
+						props.setCameraSettings({
+							position: [0, 0, 10],
+							rotation: [0, 0, 0],
+						});
+						props.setTarget([0, 7, 2]);
+					}}
 				/>
 				<mesh
 					castShadow
