@@ -10,7 +10,7 @@ const Biography = `3D Web Developer - React-tree-fiber
 GitHub: iron-mind`;
 
 export const cameraSettings = {
-	position: [4.5, 10, 5],
+	position: [7, 10, 5],
 	fov: 60,
 };
 // ...

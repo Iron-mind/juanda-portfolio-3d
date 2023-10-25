@@ -8,7 +8,7 @@ import {
 	Torus,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { MeshDepthMaterial } from "three";
 import Laptop from "./world/Laptop";
 import { Table } from "./world/Table";
@@ -23,14 +23,14 @@ import { Sign } from "./world/sign";
 import Welcome from "./world/Welcome";
 import { Text } from "@react-three/drei";
 import AboutMe3D from "./world/AboutMe3D";
- import { Physics, RigidBody } from "@react-three/rapier";
+import { Physics, RigidBody } from "@react-three/rapier";
 import { Monitor } from "./world/Monitor";
 import { Speakers } from "./world/gadgets/Speakers";
 import Phone from "./world/gadgets/Phone";
 import { Books } from "./world/gadgets/Books";
 import { Jbl } from "./world/gadgets/Jbl";
 import { Gamepad } from "./world/gadgets/Gamepad";
-
+import { useSound } from "use-sound";
 export function Experience() {
 	const boxRef = useRef();
 	const sphereRef = useRef();
@@ -44,6 +44,11 @@ export function Experience() {
 	const [counter, setCounter] = useState(0);
 
 	const [target, setTarget] = useState([4, 7, -2]);
+	const [playSound] = useSound("/assets/sounds/videoplayback.m4a", {
+		volume: 0.1,
+		loop: true,
+	});
+	const [playing, setPlaying] = useState(false);
 	useFrame((state, delta) => {
 		boxRef.current && (boxRef.current.rotation.x += 1 * delta);
 		//que el cono suba y baje un poco en el eje y
@@ -151,6 +156,9 @@ export function Experience() {
 					position={[6, 6.8, 2]}
 					onClickAboutMe={() => {
 						setAboutMe3DActive(true);
+						if (!playing) {
+							playSound();
+						}
 					}}
 					onClickProjects={() => {
 						setCameraSettings({

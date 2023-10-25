@@ -7,15 +7,14 @@ import { MathUtils } from "three";
 export function Sign(props) {
 	const [active, setActive] = useState(false);
 
-	// useFrame((state) => {
-	// 	state.camera.position.z = MathUtils.lerp(
-	// 		state.camera.position.z,
-	// 		active
-	// 			? props.cameraSettings.position[2] + 3
-	// 			: props.cameraSettings.position[2],
-	// 		0.02
-	// 	);
-	// });
+	useFrame((state) => {
+		// console.log(props.cameraSettings.position);
+		state.camera.position.z = MathUtils.lerp(
+			state.camera.position.z,
+			active ? 9 : 5,
+			0.02
+		);
+	});
 
 	const { nodes, materials } = useGLTF("assets/models/sign/sign.glb");
 	return (
@@ -92,6 +91,7 @@ export function Sign(props) {
 							position: [0, 0, 10],
 							rotation: [0, 0, 0],
 						});
+						setActive(!active);
 						props.setTarget([0, 7, 2]);
 					}}
 				/>
