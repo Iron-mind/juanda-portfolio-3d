@@ -4,23 +4,46 @@ import { RigidBody } from "@react-three/rapier";
 
 export function Table(props) {
 	const { nodes, materials } = useGLTF(
-		"/assets/models/table/office_table_-_mesa_de_escritorio.glb"
+		"/assets/models/game_table/game_table.glb"
 	);
 	return (
 		<group {...props} dispose={null}>
-			<group rotation={[-Math.PI / 2, 0, 0]}>
-				<RigidBody type="fixed">
+			<group scale={0.01}>
+				<RigidBody type="fixed" colliders="trimesh">
 					<mesh
 						castShadow
 						receiveShadow
-						geometry={nodes.Object_3.geometry}
-						material={materials.material_0}
-						position={[-71.505, -37.717, -0.001]}
+						geometry={nodes.mesh_Material_0.geometry}
+						material={materials.Material}
+						rotation={[-Math.PI / 2, 0, 0]}
+						scale={100}
 					/>
 				</RigidBody>
+				<mesh
+					castShadow
+					geometry={nodes.Logo_Material_0.geometry}
+					material={materials.Material}
+					position={[-156.236, 141.614, 118.337]}
+					rotation={[-Math.PI / 2, 0, 0]}
+					scale={1.696}
+				/>
 			</group>
 		</group>
+
+		// <group {...props} dispose={null}>
+		// 	<group rotation={[-Math.PI / 2, 0, 0]}>
+		// 		<RigidBody type="fixed">
+		// 			<mesh
+		// 				castShadow
+		// 				receiveShadow
+		// 				geometry={nodes.Object_3.geometry}
+		// 				material={materials.material_0}
+		// 				position={[-71.505, -37.717, -0.001]}
+		// 			/>
+		// 		</RigidBody>
+		// 	</group>
+		// </group>
 	);
 }
 
-useGLTF.preload("/assets/models/table/office_table_-_mesa_de_escritorio.glb");
+useGLTF.preload("/assets/models/game_table/game_table.glb");

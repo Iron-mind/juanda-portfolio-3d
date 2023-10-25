@@ -51,9 +51,9 @@ import AboutMe3D from "./world/AboutMe3D";
 		function onHandleBall() {
 			ballBodyRef.current.applyImpulse(
 				{
-					x: 3,
-					y: 10,
-					z: 0,
+					x: 35,
+					y: 0,
+					z: -1,
 				},
 				true
 			);
@@ -68,7 +68,12 @@ import AboutMe3D from "./world/AboutMe3D";
 			<pointLight position={[10, 0, 10]} /> */}
 				<Lights />
 				<Suspense fallback={"cargando"}>
-					<Sphere position={[-5, 7, 0]} args={[1, 32, 32]} ref={sphereRef}>
+					<Sphere
+						position={[-7, 9, 0]}
+						args={[1, 32, 32]}
+						ref={sphereRef}
+						castShadow
+					>
 						<meshLambertMaterial color="#53ba83" />
 					</Sphere>
 
@@ -78,17 +83,12 @@ import AboutMe3D from "./world/AboutMe3D";
 			<Torus position={[1, 0, 0]} args={[0.8, 0.4, 22, 90]} ref={torusRef}>
 				<meshToonMaterial color="#095169" />
 			</Torus> */}
-					<Goku position={[-2, 6.8, 2]} scale={0.5} />
-					<Luffy
-						position={[-4.3, 6.8, 2]}
-						scale={0.45}
-						rotation-y={-Math.PI / 2}
-					/>
+
 					<Laptop position={[0, 7, 2]} scale={0.5} />
 					<Physics>
 						<RigidBody colliders="ball" ref={ballBodyRef} restitution={1.5}>
 							<Sphere
-								position={[-2, 9, -2]}
+								position={[-4, 9, -5.6]}
 								args={[0.9, 32, 32]}
 								onClick={onHandleBall}
 							>
@@ -97,30 +97,50 @@ import AboutMe3D from "./world/AboutMe3D";
 						</RigidBody>
 						<RigidBody colliders="cuboid">
 							<Saitama
-								position={[-0.5, 6.8, -2]}
+								position={[8, 6.8, -6.5]}
 								scale={0.001}
 								castShadow
+								// rotation-y={-Math.PI / 2}
+							/>
+						</RigidBody>
+						<RigidBody colliders="cuboid">
+							<Luffy
+								position={[10, 6.8, -5]}
+								scale={0.45}
 								rotation-y={-Math.PI / 2}
 							/>
 						</RigidBody>
+						<RigidBody colliders="cuboid">
+							<WoodenFence
+								position={[9.2, 6.8, -5]}
+								scale={1}
+								rotation-y={Math.PI / 2}
+							/>
+						</RigidBody>
+						<Goku position={[10, 6.8, -3.5]} scale={0.5} />
 
-						<Table position={[0, 0, 0]} scale={0.1} rotation-y={Math.PI} />
+						<Table
+							position={[0, -3.12, -3]}
+							scale={7}
+							// rotation-y={-Math.PI * 2}
+						/>
+						{/* piso */}
+						<RigidBody type="fixed">
+							<mesh
+								position={[0, -3.9, 13]}
+								rotation-x={-Math.PI / 2}
+								receiveShadow
+							>
+								<planeGeometry attach={"geometry"} args={[55, 55]} />
+								<meshStandardMaterial attach={"material"} color="#F3F6F4" />
+							</mesh>
+						</RigidBody>
 					</Physics>
-					<mesh position={[4, 8, 0]} ref={boxRef} castShadow>
+					<mesh position={[-7, 8, -3]} ref={boxRef} castShadow>
 						<boxGeometry args={[1, 1, 1]} />
 						<meshStandardMaterial color="#3a9997" />
 					</mesh>
-					<WoodenFence
-						position={[-5, 6.8, 2]}
-						scale={1}
-						rotation-y={Math.PI / 2}
-					/>
-					{/* piso */}
-					<mesh position={[0, 0, 13]} rotation-x={-Math.PI / 2} receiveShadow>
-						<planeGeometry attach={"geometry"} args={[35, 35]} />
-						<meshStandardMaterial attach={"material"} color="#F3F6F4" />
-					</mesh>
-					{/* <Physics> */}
+
 					<Sign
 						cameraSettings={cameraSettings}
 						position={[4, 6.8, 2]}

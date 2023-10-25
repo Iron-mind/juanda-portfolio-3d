@@ -9,11 +9,11 @@ export function Saitama(props) {
 	);
 	const saitamaRef = useRef();
 	const { actions } = useAnimations(animations, saitamaRef);
-	// console.log(animations);
-	// useEffect(() => {
-	// 	const action = actions["Take 001"];
-	// 	action.play();
-	// }, []);
+	console.log(animations);
+	useEffect(() => {
+		const action = actions["Take 001"];
+		action.play();
+	}, []);
 	return (
 		<mesh {...props} dispose={null} ref={saitamaRef}>
 			<primitive object={scene} castShadow />

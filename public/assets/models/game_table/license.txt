@@ -1,0 +1,11 @@
+Model Information:
+* title:	Game table
+* source:	https://sketchfab.com/3d-models/game-table-9fcb124df76147ac9305b4fe6fe812b8
+* author:	Vlad (https://sketchfab.com/wlad628jd)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Game table" (https://sketchfab.com/3d-models/game-table-9fcb124df76147ac9305b4fe6fe812b8) by Vlad (https://sketchfab.com/wlad628jd) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
