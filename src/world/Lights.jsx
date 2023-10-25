@@ -1,10 +1,8 @@
-import { useHelper } from "@react-three/drei";
 import { useRef } from "react";
-import { SpotLightHelper } from "three";
 
 export default function Lights({ target }) {
 	const spotLightRef = useRef();
-	useHelper(spotLightRef, SpotLightHelper, "cyan");
+
 	return (
 		<>
 			<ambientLight intensity={0.2} />
@@ -17,7 +15,7 @@ export default function Lights({ target }) {
 				castShadow
 				distance={60}
 			/>
-			<directionalLight position={[0, 20, 0]} intensity={0.3} />
+			<directionalLight position={[9, 20, 0]} intensity={0.2} />
 		</>
 	);
 }
