@@ -156,9 +156,11 @@ export function Experience() {
 					position={[6, 6.8, 2]}
 					onClickAboutMe={() => {
 						setAboutMe3DActive(true);
-						if (!playing) {
-							playSound();
+						if (playing) {
+							return "Playing";
 						}
+						playSound();
+						setPlaying(true);
 					}}
 					onClickProjects={() => {
 						setCameraSettings({
