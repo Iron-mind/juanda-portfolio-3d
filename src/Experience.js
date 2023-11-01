@@ -1,24 +1,15 @@
-import {
-	Center,
-	Cone,
-	OrbitControls,
-	PointerLockControls,
-	PresentationControls,
-	Sphere,
-	Torus,
-} from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { MeshDepthMaterial } from "three";
+import { OrbitControls, Sphere } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { Suspense, useRef, useState } from "react";
 import Laptop from "./world/Laptop";
 import { Table } from "./world/Table";
-import { Goku } from "./world/goku";
-import { Saitama } from "./world/Saitama";
+import { Goku } from "./world/characters/goku";
+import { Saitama } from "./world/characters/Saitama";
 import WoodenFence from "./world/woondenFence";
-import Luffy from "./world/Luffy";
+import Luffy from "./world/characters/Luffy";
 import Lights from "./world/Lights";
 import Environments from "./world/Enviroment";
-import { Perf } from "r3f-perf";
+
 import { Sign } from "./world/sign";
 import Welcome from "./world/Welcome";
 import { Text } from "@react-three/drei";
@@ -31,11 +22,12 @@ import { Books } from "./world/gadgets/Books";
 import { Jbl } from "./world/gadgets/Jbl";
 import { Gamepad } from "./world/gadgets/Gamepad";
 import { useSound } from "use-sound";
+import { MiTaza } from "./world/blenders/Taza";
 export function Experience() {
 	const boxRef = useRef();
 	const sphereRef = useRef();
 	const ballBodyRef = useRef();
-	const torusRef = useRef();
+	const tazaRef = useRef();
 	const [AboutMe3DActive, setAboutMe3DActive] = useState(false);
 	const [cameraSettings, setCameraSettings] = useState({
 		position: [4.5, 10, 5],
@@ -51,11 +43,9 @@ export function Experience() {
 	const [playing, setPlaying] = useState(false);
 	useFrame((state, delta) => {
 		boxRef.current && (boxRef.current.rotation.x += 1 * delta);
-		//que el cono suba y baje un poco en el eje y
+
 		setCounter(counter + 1 * delta);
 		sphereRef.current && (sphereRef.current.position.y = Math.sin(counter) + 8);
-
-		// torusRef.current.position.y = Math.sin(counter);
 	});
 
 	function onHandleBall() {
@@ -68,14 +58,22 @@ export function Experience() {
 			true
 		);
 	}
+	function handleTaza() {
+		tazaRef.current.applyImpulse(
+			{
+				x: -2,
+				y: 0,
+				z: -2,
+			},
+			true
+		);
+	}
 
 	return (
 		<>
-			{/* <Perf /> */}
 			<Environments />
 			<OrbitControls enableRotate={true} target={target} />
-			{/* <ambientLight intensity={0.5} />
-			<pointLight position={[10, 0, 10]} /> */}
+
 			<Lights />
 			<Suspense fallback={"cargando"}>
 				<Sphere
@@ -86,13 +84,6 @@ export function Experience() {
 				>
 					<meshLambertMaterial color="#53ba83" />
 				</Sphere>
-
-				{/* 
-				<meshPhysicalMaterial color="#059b9a" />
-			</Cone>
-			<Torus position={[1, 0, 0]} args={[0.8, 0.4, 22, 90]} ref={torusRef}>
-				<meshToonMaterial color="#095169" />
-			</Torus> */}
 
 				<Physics>
 					<RigidBody colliders="ball" ref={ballBodyRef} restitution={1.5}>
@@ -106,12 +97,7 @@ export function Experience() {
 						</Sphere>
 					</RigidBody>
 					<RigidBody colliders="cuboid">
-						<Saitama
-							position={[8, 6.8, -6.5]}
-							scale={0.001}
-							castShadow
-							// rotation-y={-Math.PI / 2}
-						/>
+						<Saitama position={[8, 6.8, -6.5]} scale={0.001} castShadow />
 					</RigidBody>
 					<RigidBody colliders="cuboid">
 						<Luffy
@@ -128,13 +114,11 @@ export function Experience() {
 						/>
 					</RigidBody>
 					<Goku position={[10, 6.8, -3.5]} scale={0.5} />
+					<RigidBody ref={tazaRef} colliders="cuboid">
+						<MiTaza position={[6, 6.8, 3]} scale={0.3} onClick={handleTaza} />
+					</RigidBody>
+					<Table position={[0, -3.12, -3]} scale={7} />
 
-					<Table
-						position={[0, -3.12, -3]}
-						scale={7}
-						// rotation-y={-Math.PI * 2}
-					/>
-					{/* piso */}
 					<RigidBody type="fixed">
 						<mesh
 							position={[0, -3.9, 13]}
@@ -175,7 +159,6 @@ export function Experience() {
 					<Welcome position={[0, 3, 0]} fontSize={0.2} height={0.1} />
 					<AboutMe3D active={AboutMe3DActive} position={[0, 0, 6]} />
 				</Sign>
-				{/* </Physics> */}
 				<Text
 					color="white"
 					fontSize={0.4}
@@ -203,10 +186,6 @@ export function Experience() {
 					scale={0.5}
 					rotation-x={-Math.PI / 2}
 				/>
-				{/* <mesh position={[0, 0, -4.5]} rotation-x={2 * Math.PI}>
-				<planeGeometry attach={"geometry"} args={[35, 35]} />
-				<meshStandardMaterial attach={"material"} color="#CFE2F3" />
-			</mesh> */}
 			</Suspense>
 		</>
 	);

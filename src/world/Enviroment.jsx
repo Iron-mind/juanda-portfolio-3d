@@ -5,7 +5,6 @@ export default function Environments() {
 		<>
 			<Environment
 				files={"/assets/environments/mud_road_puresky_2k.hdr"}
-				// preset="city"
 				background={true}
 			/>
 		</>

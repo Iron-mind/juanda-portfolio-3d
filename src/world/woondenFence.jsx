@@ -16,12 +16,7 @@ export default function WoodenFence(props) {
 
 	return (
 		<group {...props} dispose={null}>
-			<mesh
-				castShadow
-				// receiveShadow
-				geometry={nodes.WoodenFence.geometry}
-				// material={nodes.WoodenFence.material}
-			>
+			<mesh castShadow geometry={nodes.WoodenFence.geometry}>
 				<meshStandardMaterial {...propTextures} />
 			</mesh>
 		</group>

@@ -7,7 +7,9 @@ import { Loader } from "@react-three/drei";
 
 const root = ReactDom.createRoot(document.querySelector("#root"));
 const Biography = `3D Web Developer - React-tree-fiber
-GitHub: iron-mind`;
+GitHub: iron-mind
+Toca la taza o la bola sobre la mesa.
+También puedes tocar el about me`;
 
 export const cameraSettings = {
 	position: [7, 10, 5],

@@ -30,19 +30,6 @@ export function Table(props) {
 			</group>
 		</group>
 
-		// <group {...props} dispose={null}>
-		// 	<group rotation={[-Math.PI / 2, 0, 0]}>
-		// 		<RigidBody type="fixed">
-		// 			<mesh
-		// 				castShadow
-		// 				receiveShadow
-		// 				geometry={nodes.Object_3.geometry}
-		// 				material={materials.material_0}
-		// 				position={[-71.505, -37.717, -0.001]}
-		// 			/>
-		// 		</RigidBody>
-		// 	</group>
-		// </group>
 	);
 }
 

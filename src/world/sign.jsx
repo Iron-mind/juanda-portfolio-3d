@@ -1,19 +1,21 @@
 import React, { useRef, useState } from "react";
-import { useGLTF } from "@react-three/drei";
+import { Text, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { MathUtils } from "three";
 
-
 export function Sign(props) {
 	const [active, setActive] = useState(false);
-
+	let pos_z;
 	useFrame((state) => {
 		// console.log(props.cameraSettings.position);
-		state.camera.position.z = MathUtils.lerp(
-			state.camera.position.z,
-			active ? 9 : 5,
-			0.02
-		);
+		pos_z = Math.round(state.camera.position.z);
+		if (pos_z >= 5 && pos_z <= 9) {
+			state.camera.position.z = MathUtils.lerp(
+				state.camera.position.z,
+				active ? 9 : 5,
+				0.02
+			);
+		}
 	});
 
 	const { nodes, materials } = useGLTF("assets/models/sign/sign.glb");
@@ -47,21 +49,18 @@ export function Sign(props) {
 					rotation={[1.559, -0.139, -0.088]}
 					scale={0.189}
 				/>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.ContactMe.geometry}
-					material={materials.red}
-				/>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.TextContactMe.geometry}
-					material={materials.text}
-					position={[0.02, 0.95, 0.089]}
-					rotation={[Math.PI / 2, 0, -0.087]}
-					scale={0.189}
-				/>
+				<Text
+					position={[0.03, 1.82, 0.099]}
+					scale={0.6}
+					color="black"
+					fontSize={0.3}
+					maxWidth={1}
+					lineHeight={1}
+					letterSpacing={0}
+				>
+					All
+				</Text>
+
 				<mesh
 					castShadow
 					receiveShadow
@@ -71,38 +70,6 @@ export function Sign(props) {
 						props.onClickProjects();
 						setActive(!active);
 					}}
-				/>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.TextProjects.geometry}
-					material={materials.text}
-					position={[0.02, 1.86, 0.092]}
-					rotation={[Math.PI / 2, 0, 0.087]}
-					scale={0.189}
-				/>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Skills.geometry}
-					material={materials.blue}
-					onClick={() => {
-						props.setCameraSettings({
-							position: [0, 0, 10],
-							rotation: [0, 0, 0],
-						});
-						setActive(!active);
-						props.setTarget([0, 7, 2]);
-					}}
-				/>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.TextSkills.geometry}
-					material={materials.text}
-					position={[0, 1.42, 0.09]}
-					rotation={[1.56, 0.122, 0.088]}
-					scale={0.189}
 				/>
 			</group>
 		</group>
